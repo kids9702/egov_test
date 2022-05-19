@@ -60,7 +60,7 @@
 				<div class="notice_area">
 					<h3 class="notice_title"><img src="<c:url value='/images/index/img_subtitle01.gif' />" alt="공지사항" /></h3>
 					<!-- <a href="#LINK" onclick="javascript:fn_main_headPageAction('43','cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'); return false;" class="more"><img src="<c:url value='/images/index/btn_more.gif' />" alt="more" /></a> -->
-					<a href="#" onclick="javascript:fn_getAjax(); return false;" class="more"><img src="<c:url value='/images/index/btn_more.gif' />" alt="more" /></a>
+					<a href="#" onclick="javascript:fn_getClsAjax(); return false;" class="more"><img src="<c:url value='/images/index/btn_more.gif' />" alt="more" /></a>
                     <ul id="notiList">
                         <!--
     					<c:forEach var="result" items="${notiList}" varStatus="status">

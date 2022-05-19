@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="EgovMainDAO">
+	<select id = "selectIntteClsList" parameterType="IntteVO" resultType="EgovMap">
+	    SELECT A.intte_seq,
+	        A.cls_seq,
+	        A.cls_nm
+	    FROM tb_intte_cls A
+	        INNER JOIN tb_intte B ON A.intte_seq = B.intte_seq AND B.use_yn = 'Y'
+	    WHERE A.intte_seq = #{intteSeq}
+	        AND A.cls_seq = #{clsSeq}
+	</select>
 </mapper>

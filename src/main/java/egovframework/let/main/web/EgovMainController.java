@@ -3,9 +3,14 @@ package egovframework.let.main.web;
 import java.util.ArrayList; 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.let.main.dao.EgovMainDAO;
+import egovframework.let.main.service.EgovMainService;
+import egovframework.let.main.service.EgovMainServiceImpl;
+import egovframework.let.main.vo.IntteVO;
 //import egovframework.let.cop.bbs.service.BoardVO;
 //import egovframework.let.cop.bbs.service.EgovBBSManageService;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -13,6 +18,7 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -47,6 +53,8 @@ public class EgovMainController {
 	 */
 	//@Resource(name = "EgovBBSManageService")
 //    private EgovBBSManageService bbsMngService;
+	@Resource(name = "EgovMainService")
+	public EgovMainService mainService;
 //
 //	/**
 //	 * 메인 페이지에서 각 업무 화면으로 연계하는 기능을 제공한다.
@@ -129,6 +137,23 @@ public class EgovMainController {
         }
 
         rtn.put("notiList", dataList);
+
+        return new Gson().toJson(rtn).getBytes("UTF-8");
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/main/intteClsList.do")
+    public byte[] getClsiList(HttpServletRequest request, ModelMap model, IntteVO vo, HttpSession session, Locale locale) throws Exception {
+        Map<String, Object> rtn = new HashMap<>();
+        rtn.put("success", Boolean.FALSE);
+
+//        IntteVO vo = new IntteVO();
+//        vo.setIntteSeq(Integer.parseInt(request.getParameter("intteSeq")));
+//        vo.setClsSeq(Integer.parseInt(request.getParameter("clsSeq")));
+        
+        List<EgovMap> clsList = mainService.getIntteClsList(vo);
+        
+        rtn.put("clsList", clsList);
 
         return new Gson().toJson(rtn).getBytes("UTF-8");
     }
